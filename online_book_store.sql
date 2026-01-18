@@ -1,4 +1,4 @@
-use piit;
+
 create database company ;
 use company;
 select * from books ;        
