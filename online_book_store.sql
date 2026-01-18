@@ -1,10 +1,50 @@
+## Online Book Store Analysis : 
 
-create database company ;
-use company;
-select * from books ;        
-select * from customers;
-select * from orders;
 
+### This project focuses on analyzing an **Online Book Store dataset from Kaggle** using **SQL**.  
+The goal is to practice and demonstrate real-world SQL skills by answering common business and analytical questions related to books, customers, orders, and sales.
+
+#### The project covers **data retrieval, filtering, sorting, joins, grouping, and aggregation**, which are essential SQL concepts for a Data Analyst role.
+
+#### Dataset Information
+- **Source:** Kaggle – Online Book Store Dataset  
+- **Data Includes:**
+  - Books details (title, author, genre, price)
+  - Customers information
+  - Orders and sales transactions
+  - Order dates and quantities
+ 
+ #### Tools & Technologies
+ -SQL(MySQL Workbench)
+
+  #### Project Objectives
+- Retrieve meaningful information from multiple tables
+- Analyze book sales and customer behavior
+- Practice SQL queries commonly asked in interviews
+- Improve understanding of relational databases
+
+ #### SQL Concepts Covered
+- `SELECT` & `WHERE`
+- `ORDER BY`
+- `LIMIT`
+- `INNER JOIN`, `LEFT JOIN`
+- `GROUP BY`
+- Aggregate functions (`SUM`, `COUNT`, `AVG`, `MIN`, `MAX`)
+- `HAVING`
+- Subqueries (if applicable)
+
+ #### Business & Analytical Questions
+  I solved **15 SQL questions** based on the dataset, including:
+
+- Data retrieval from single and multiple tables  
+- Filtering records based on conditions  
+- Sorting data for analysis  
+- Joining related tables  
+- Grouping data to generate summaries  
+- Applying aggregation to extract insights  
+ 
+#### Questions and Answers using queries
+ 
 -- 1. Show order placed in November 2023.
 
 select * from orders
@@ -103,6 +143,9 @@ on c.customer_id = o.customer_id
 group by c.customer_id, c.name
 order by highest_spent desc
 limit 1 ;
+
+### Conclusion
+ “This project helped me apply core SQL concepts on a real dataset, especially joins and aggregations, to answer business questions related to sales and customers. It strengthened my analytical thinking and query-writing skills.”
  
  
 
