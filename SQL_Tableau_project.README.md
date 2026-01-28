@@ -38,7 +38,11 @@ total_price DECIMAL(10,2)
 
 1. Total Revenue Generated
 
-SELECT SUM(total_price) AS total_revenue
-FROM pizza_sales;
+* SELECT SUM(total_price) AS total_revenue
+  FROM pizza_sales;
+
+Ans. total_revenue
+     131618.65
+
 
 
