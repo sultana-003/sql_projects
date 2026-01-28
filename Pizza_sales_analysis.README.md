@@ -1,0 +1,275 @@
+## Pizza Sales Analysis – SQL Project
+###  Project Overview
+
+This project analyzes a pizza sales dataset using SQL to uncover business insights such as revenue trends, best-selling pizzas, customer ordering behavior, and category performance. The goal is to demonstrate real-world SQL analysis skills suitable for a Data Analyst portfolio.
+
+Dataset file used: pizza_sales.csv
+
+### Objectives
+
+* Analyze total revenue and order volume
+* Identify top-performing pizzas and categories
+* Understand sales trends by date and time
+* Provide actionable business recommendations
+
+### Tools & Skills Used
+
+* SQL (MySQL / PostgreSQL compatible)
+* Aggregations (SUM, COUNT, AVG)
+* GROUP BY, ORDER BY
+* Date & time functions
+* Subqueries
+* Business insight generation
+
+### Table Creation
+
+CREATE TABLE pizza_sales (
+order_id INT,
+order_date DATE,
+order_time TIME,
+pizza_name VARCHAR(100),
+pizza_category VARCHAR(50),
+pizza_size VARCHAR(10),
+quantity INT,
+total_price DECIMAL(10,2)
+);
+
+## Business Questions & SQL Queries
+
+#### 1. Total Revenue Generated
+
+* SELECT SUM(total_price) AS total_revenue
+  FROM pizza_sales;
+
+ total_revenue
+     131618.65
+     
+#### 2. Total Number of Orders
+
+* SELECT COUNT(DISTINCT order_id) AS total_orders
+FROM pizza_sales;
+
+ total_orders
+      3450
+
+#### 3. Total Pizzas Sold
+
+* SELECT SUM(quantity) AS total_pizzas_sold
+FROM pizza_sales;
+
+ total_pizzas_sold
+     7994
+
+#### 4. Average Order Value
+
+* SELECT
+ SUM(total_price) / COUNT(DISTINCT order_id) AS avg_order_value
+ FROM pizza_sales;
+
+ avg_order_value
+     38.15033333
+
+#### 5. Daily Order Trend
+
+* SELECT order_date, COUNT(DISTINCT order_id) AS orders
+FROM pizza_sales
+GROUP BY order_date
+ORDER BY order_date;
+
+     order_date	   orders
+        1/1/2015	69
+        1/2/2015	87
+       10/1/2015	65
+       10/2/2015	59
+       11/1/2015	52
+       11/2/2015	69
+       12/1/2015	55
+       12/2/2015	58
+      13-01-2015	48
+      13-02-2015	71
+      14-01-2015	62
+      14-02-2015	57
+      15-01-2015	62
+      15-02-2015	55
+      16-01-2015	67
+      16-02-2015	49
+      17-01-2015	55
+      17-02-2015	61
+      18-01-2015	51
+      18-02-2015	61
+       19-01-2015	56
+      19-02-2015	56
+        2/1/2015	67
+        2/2/2015	63
+      20-01-2015	64
+       20-02-2015	73
+      21-01-2015	51
+       22-01-2015	68
+      22-02-2015	37
+      23-01-2015	69
+      23-02-2015	54
+      24-02-2015	58
+      25-01-2015	44
+      25-02-2015	63
+      26-01-2015	55
+      26-02-2015	55
+      27-01-2015	66
+       27-02-2015	50
+      28-01-2015	51
+      29-01-2015	58
+        3/1/2015	66
+        3/2/2015	62
+      30-01-2015	65
+      31-01-2015	54
+        4/1/2015	52
+        4/2/2015	57
+        5/1/2015	54
+        5/2/2015	60
+         6/1/2015	64
+        6/2/2015	66
+         7/1/2015	58
+        7/2/2015	61
+        8/1/2015	72
+        8/2/2015	53
+        9/1/2015	62
+         9/2/2015	54
+         
+ #### 6. Orders by Hour
+
+ * SELECT HOUR(order_time) AS hour, COUNT(DISTINCT order_id) AS orders
+FROM pizza_sales
+GROUP BY hour
+ORDER BY hour;
+
+   hour   orders
+      10	1
+      11	193
+      12	409
+      13	379
+      14	286
+      15	239
+      16	297
+      17	403
+      18	376
+      19	309
+      20	266
+      21	189
+      22	101
+      23	2
+
+#### 7. Sales by Pizza Category
+
+* SELECT pizza_category, SUM(total_price) AS revenue
+FROM pizza_sales
+GROUP BY pizza_category
+ORDER BY revenue DESC;
+
+ pizza_category    	revenue
+Classic	           35099.25
+Supreme	           33812.7
+Veggie        	   31772.45
+Chicken	          30934.25
+
+#### 8. Sales by Pizza Size
+
+* SELECT pizza_size, SUM(total_price) AS revenue
+FROM pizza_sales
+GROUP BY pizza_size
+ORDER BY revenue DESC;
+
+ pizza_size	      revenue
+        L	        60832.45
+        M	        39258
+        S	        29206.45
+       XL	        2142
+       XXL	      179.75
+
+#### 9. Top 10 Best-Selling Pizzas (by Revenue)
+
+* SELECT pizza_name, SUM(total_price) AS revenue
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY revenue DESC
+LIMIT 10;
+
+ pizza_name	                 revenue
+The Barbecue Chicken Pizza	     6994.75
+The California Chicken Pizza	   6816.25
+The Thai Chicken Pizza	         6554
+The Classic Deluxe Pizza	       5554
+The Pepperoni Pizza              5487.5
+The Sicilian Pizza	             5446.25
+The Italian Supreme Pizza	       5414.75
+The Four Cheese Pizza	           5232.95
+The Spicy Italian Pizza	         5192.5
+The Southwest Chicken Pizza	     5170.5
+
+#### 10. Top 10 Pizzas by Quantity Sold
+
+* SELECT pizza_name, SUM(quantity) AS total_quantity
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY total_quantity DESC
+LIMIT 10;
+
+ pizza_name	               total_quantity
+The Pepperoni Pizza             	439
+The California Chicken Pizza  	  395
+The Barbecue Chicken Pizza	      393
+The Hawaiian Pizza	              373
+The Thai Chicken Pizza	          360
+The Classic Deluxe Pizza	        357
+The Sicilian Pizza	              345
+The Four Cheese Pizza	            309
+The Italian Supreme Pizza	        304
+The Big Meat Pizza	              293
+
+#### 11. Lowest Performing Pizzas
+
+* SELECT pizza_name, SUM(total_price) AS revenue
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY revenue ASC
+LIMIT 10;
+
+	pizza_name                  total revenue
+The Brie Carre Pizza	            1844.7
+The Mediterranean Pizza	          2106.25
+The Green Garden Pizza	          2119.25
+The Spinach Pesto Pizza	          2443
+The Spinach Supreme Pizza       	2531
+The Calabrese Pizza	              2545.25
+The Soppressata Pizza	            2563
+The Chicken Alfredo Pizza	        2686.5
+The Chicken Pesto Pizza	         2712.25
+The Pepperoni, Mushroom, and Peppers Pizza	2847.5
+
+### Key Insights
+
+* Large-sized pizzas generate the highest revenue
+* Peak order times occur during lunch and dinner hours
+* Classic and Chicken categories dominate total sales
+* A small group of pizzas contribute to a large portion of revenue
+
+### Business Recommendations
+
+* Promote top-selling pizzas using combo deals
+* Introduce discounts during non-peak hours
+* Review low-performing pizzas for removal or rebranding
+* Focus marketing on high-revenue pizza sizes
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
