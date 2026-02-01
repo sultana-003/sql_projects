@@ -134,7 +134,7 @@ GROUP BY s.student_name;
 student_name	   avg_score	       performance_level
   Ayesha	         81.5	              Excellent
   Rahim	           67.5	              Average
-  Karim	           57.5	          Needs Improvement
+  Karim	           57.5	            Needs Improvement
   Nusrat	         89	               Excellent
   Sadia	           73.5	              Average
 
@@ -151,11 +151,11 @@ GROUP BY s.student_name, a.attendance_percentage
 ORDER BY avg_score DESC;
 
 student_name	 attendance_percentage	     avg_score
-   Nusrat	             98	                  89
-  Ayesha	             95.5	                81.5
+   Nusrat	             98	                   89
+  Ayesha	            95.5	                81.5
   Sadia	               90	                  73.5
   Rahim	               88	                  67.5
-  Karim	               70.5               	57.5
+  Karim	              70.5                  57.5
 
 
 # Project Report
