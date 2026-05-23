@@ -44,7 +44,7 @@ B. Doctors Table
 C. Visits Table
 D. Billing Table
 
-`sql
+```sql
 CREATE TABLE Patients (
     patient_id INT PRIMARY KEY,
     patient_name VARCHAR(100),
@@ -83,3 +83,4 @@ CREATE TABLE Billing (
 
     FOREIGN KEY (visit_id) REFERENCES Visits(visit_id)
 );
+```
