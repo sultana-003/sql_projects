@@ -153,9 +153,9 @@ ORDER BY total_revenue DESC;
 ```
 
 #### Insight
-###### Department	###### Revenue
-Emergency	Highest
-Cardiology	Second highest
+###### Department	 Revenue
+Emergency	          Highest
+Cardiology	         Second highest
 
 #### Business Decision
 - Increase staffing in high-revenue departments
